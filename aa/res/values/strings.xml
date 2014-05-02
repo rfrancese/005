@@ -7,12 +7,14 @@
       <string name="imgdesc">imgdesc</string>
 
     <string-array name="titles">
-        <item>Facebook</item>
-        <item>Google-Plus</item>
-        <item>TutorialsBuzz</item>
+        <item>Ricerca</item>
+        <item>Ricerca avanzata</item>
+        <item>Calendario</item>
+        <item>Contatta</item>
     </string-array>
 
     <array name="icons">
+        <item>@drawable/ic_launcher</item>
         <item>@drawable/ic_launcher</item>
         <item>@drawable/ic_launcher</item>
         <item>@drawable/ic_launcher</item>
