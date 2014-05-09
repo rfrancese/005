@@ -4,11 +4,16 @@
     <string name="app_name">aa</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-      <string name="imgdesc">imgdesc</string>
-
+    <string name="image_desc">Image desc</string>
+    <string name="description">Description</string>
+      <string name="menu_name">Evento</string>
+     <string name="data">data</string>
+  <string name="imgdesc">ImgDescr</string>
     <string-array name="titles">
+        <item>I miei eventi</item>
+        <item>Preferiti</item>
+        <item>Storico eventi</item>
         <item>Ricerca</item>
-        <item>Ricerca avanzata</item>
         <item>Calendario</item>
         <item>Contatta</item>
     </string-array>
@@ -17,6 +22,7 @@
         <item>@drawable/ic_launcher</item>
         <item>@drawable/ic_launcher</item>
         <item>@drawable/ic_launcher</item>
+         <item>@drawable/ic_launcher</item>
         <item>@drawable/ic_launcher</item>
     </array>
 

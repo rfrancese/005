@@ -1,5 +1,7 @@
 package com.example.aa;
 
-public class Ricerca {
+import android.support.v4.app.ListFragment;
 
+public class Ricerca extends ListFragment{
+        
 }
