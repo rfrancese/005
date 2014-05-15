@@ -45,7 +45,7 @@ public class FragmentB extends ListFragment {
       private ListView listView;
      public static ArrayList<Evento> menuItems=new ArrayList<Evento>();
       private CustomArrayAdapter mAdapter;
-
+//TEST COMMIT
       @Override
       public View onCreateView(LayoutInflater inflater, ViewGroup container,
               Bundle savedInstanceState) {
