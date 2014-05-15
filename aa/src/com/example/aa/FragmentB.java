@@ -52,9 +52,9 @@ public class FragmentB extends ListFragment {
           View rootView = inflater.inflate(R.layout.fragment,
                   container, false);
           listView = (ListView) rootView.findViewById(android.R.id.list);
-           HtmlParser parser=new HtmlParser(url_str);
-           menuItems=parser.getElement(elementName);
-    /*      new LoadEventiTask().execute(); */
+//           HtmlParser parser=new HtmlParser(url_str);
+//           menuItems=parser.getElement(elementName);
+       new LoadEventiTask().execute();
 
      /*     Evento a=new Evento();
           a.setNome("FESTAASD");
