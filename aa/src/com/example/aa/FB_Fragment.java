@@ -33,6 +33,7 @@ private ListView listView;
 		        "Linux", "OS/2" };
 		   ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, values);
 		    setListAdapter(adapter); */
+		    
 		    android.support.v4.app.Fragment fragment2 = new FragmentB();
 		    android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
 		    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
