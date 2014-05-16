@@ -127,7 +127,7 @@ public class MainActivity extends FragmentActivity {
 		      ListFragment fragment = null;
 		         switch (position) {
 		               case 0:
-		                           fragment = new FB_Fragment();
+		                           fragment = new FragmentB();
 		                            break;
 		               case 1:
 		                           fragment = new GP_Fragment();

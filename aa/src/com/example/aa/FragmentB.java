@@ -13,6 +13,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,6 +31,8 @@ import android.widget.ListView;
 public class FragmentB extends ListFragment {
 	String url_str = "http://www.residentadvisor.net/events.aspx?ai=172";
 	String elementName = "a";
+    private Dialog pDialog;
+
 
 
 	/*public void onActivityCreated(Bundle savedInstanceState) {
@@ -78,6 +84,8 @@ public class FragmentB extends ListFragment {
 
           mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
           listView.setAdapter(mAdapter);  
+	        mAdapter.notifyDataSetChanged();
+
 
   }
       private class LoadEventiTask extends AsyncTask<Void, Void, String> {
@@ -88,7 +96,10 @@ public class FragmentB extends ListFragment {
 
   		@Override
   		protected void onPreExecute() {
-  			
+            super.onPreExecute();
+            pDialog = ProgressDialog.show(getActivity(), "",
+                    "Loading. Please wait...", true);
+
   		}
 
   		@Override
@@ -125,6 +136,8 @@ public class FragmentB extends ListFragment {
   		}
   		protected void onPostExecute(String result) {
   	    Evento nuovo = null;
+        mAdapter.notifyDataSetChanged();
+
   	
 
   			try{
@@ -139,6 +152,8 @@ public class FragmentB extends ListFragment {
   					     nuovo.setNome(type);
   	                menuItems.add(nuovo);
   	            } 
+		        mAdapter.notifyDataSetChanged();
+
 
   	        } 
 		           
@@ -149,7 +164,11 @@ public class FragmentB extends ListFragment {
 		        {
 		            e.printStackTrace();
 		        }
+	        mAdapter.notifyDataSetChanged();
+	        if (pDialog.isShowing())
+                pDialog.dismiss();
   		}
+  		
       }
       
       public void onAttach(Activity activity){
@@ -192,5 +211,17 @@ public class FragmentB extends ListFragment {
       public void onDetach(){
     	  super.onDetach();
       }
+      public void onListItemClick(ListView l, View v, int position, long id) {
+		 
+			Fragment fragment2 = new EventoView();
+			    android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+			    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+			    fragmentTransaction.replace(R.id.frame_container, fragment2);
+			    fragmentTransaction.addToBackStack(null);
+
+			    fragmentTransaction.commit();
+	      
+	      
+	  }
 }
 
