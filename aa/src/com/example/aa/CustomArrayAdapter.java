@@ -3,6 +3,8 @@ package com.example.aa;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.aa.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -43,17 +45,23 @@ public class CustomArrayAdapter extends ArrayAdapter<Evento> {
             holder = new ViewHolder(); 
          holder.txtMenuName = (TextView) convertView.findViewById(R.id.menu_name);
           holder.txtMenuName.setText(rowItem.getNome());
+          holder.imageView = (ImageView) convertView.findViewById(R.id.list_image);
+          holder.imageView.setImageBitmap(rowItem.getImgBtmSmall());
+          holder.txtDate = (TextView) convertView.findViewById(R.id.data);
+          holder.txtDate.setText(rowItem.getDataString());
+          holder.txtMenuDesc = (TextView) convertView.findViewById(R.id.description);
+          holder.txtMenuDesc.setText(rowItem.getAddress());
           convertView.setTag(holder);
 
-      /*      holder.txtMenuDesc = (TextView) convertView.findViewById(R.id.description);
-            holder.txtDate = (TextView) convertView.findViewById(R.id.data);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.list_image); */
+      /*   
+            
+           
           /*  convertView.setTag(holder);  */
         } else{
        /*     holder = (ViewHolder) convertView.getTag(); */
             holder = (ViewHolder) convertView.getTag();
 
-        holder.txtMenuName.setText(rowItem.getNome());
+        holder.txtMenuName.setText(rowItem.getNome()+"CIAO");
         /*
         holder.txtMenuDesc.setText(rowItem.getLuogo());
         

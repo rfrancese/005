@@ -2,6 +2,8 @@ package com.example.aa;
 
 import java.util.List;
 
+import com.example.aa.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;

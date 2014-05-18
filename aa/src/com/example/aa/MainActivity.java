@@ -3,8 +3,10 @@ package com.example.aa;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.aa.R;
 
-import com.example.aa.HtmlParser;
+
+
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -51,9 +53,11 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	/*	viewPager=(ViewPager)findViewById(R.id.pager);
-		android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
-		viewPager.setAdapter(new MyAdapter(fragmentManager));  */
+		//COMMENTO DA QUI 
+//		viewPager=(ViewPager)findViewById(R.id.pager);
+//		android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+//		viewPager.setAdapter(new MyAdapter(fragmentManager)); 
+		// A QUI 
 		this.createMenu();
 }
 	
@@ -217,70 +221,12 @@ public class MainActivity extends FragmentActivity {
 		          // Pass any configuration change to the drawer toggles
 		           mDrawerToggle.onConfigurationChanged(newConfig);
 		    }
+		    
+}
 
 
 		
 	
 
-  /* public void createFragments(){
-	  /* viewPager=(ViewPager)findViewById(R.id.pager);
-		android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
-		viewPager.setAdapter(new MyAdapter(fragmentManager)); */
-   }
 
-
-
-/*
-
-	class MyAdapter extends FragmentPagerAdapter{
-
-		public MyAdapter(android.support.v4.app.FragmentManager fragmentManager) {
-			super(fragmentManager);
-			// TODO Auto-generated constructor stub
-		}
-
-
-
-		@Override
-		public android.support.v4.app.Fragment getItem(int i) {
-			ListFragment fragment=null;
-			/*if(i==0){
-				fragment=new FragmentA();
-			} 
-			/*if(i==1){
-				fragment=new FragmentB();
-			} 
-			if(i==2){
-				fragment=new FragmentC();
-			}
-			return fragment;
-		}
-
-		@Override
-		public int getCount() {
-			// TODO Auto-generated method stub
-			return 3;
-		}
-		
-	
-	public CharSequence getPageTitle(int position){
-		   if(position==0)
-		   {
-			   return "Tab 1";
-		   }
-		   if(position==1)
-		   {
-			   return "Tab 2";
-		   }
-		   if(position==2)
-		   {
-			   return "Tab 3";
-		   }
-		return null;
-	   }
-	
-	
-	
-	
-*/
   

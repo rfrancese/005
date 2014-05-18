@@ -1,5 +1,7 @@
 package com.example.aa;
 
+import com.example.aa.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;

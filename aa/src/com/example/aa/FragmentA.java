@@ -1,4 +1,6 @@
 package com.example.aa;
+import com.example.aa.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -11,10 +13,9 @@ import android.widget.ListView;
 
 	
 	import android.app.Activity;
-	import android.os.Bundle;
-	import android.view.Menu;
-	import android.widget.CheckBox;
-	import android.widget.*;
+import android.os.Bundle;
+import android.view.Menu;
+import android.widget.*;
 
 	public class FragmentA extends Activity implements CompoundButton.OnCheckedChangeListener {
 		CheckBox cb;
