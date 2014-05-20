@@ -47,10 +47,10 @@ public class CustomArrayAdapter extends ArrayAdapter<Evento> {
           holder.txtMenuName.setText(rowItem.getNome());
           holder.imageView = (ImageView) convertView.findViewById(R.id.list_image);
           holder.imageView.setImageBitmap(rowItem.getImgBtmSmall());
-          holder.txtDate = (TextView) convertView.findViewById(R.id.data);
-          holder.txtDate.setText(rowItem.getDataString());
+//          holder.txtDate = (TextView) convertView.findViewById(R.id.data);
+//          holder.txtDate.setText(rowItem.getDataString());
           holder.txtMenuDesc = (TextView) convertView.findViewById(R.id.description);
-          holder.txtMenuDesc.setText(rowItem.getAddress());
+          holder.txtMenuDesc.setText(rowItem.getDataString());
           convertView.setTag(holder);
 
       /*   
@@ -61,7 +61,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Evento> {
        /*     holder = (ViewHolder) convertView.getTag(); */
             holder = (ViewHolder) convertView.getTag();
 
-        holder.txtMenuName.setText(rowItem.getNome()+"CIAO");
+        holder.txtMenuName.setText(rowItem.getNome());
         /*
         holder.txtMenuDesc.setText(rowItem.getLuogo());
         

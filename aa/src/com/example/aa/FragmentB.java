@@ -56,14 +56,22 @@ public class FragmentB extends ListFragment {
 		listView = (ListView) rootView.findViewById(android.R.id.list);
 		ricarica();
 		
-		for(int i = 0 ; i < menuItems.size() ; i++) {
-			EventsDescriptionParser p = new EventsDescriptionParser(menuItems.get(i));
-			p.execute();
-			// QUESTO CICLO FOR EFFETTUA IL PARSER DELLA PAGINA DI OGNI EVENTO E SALVA TUTTO NELL OGGETTO PASSATOGLI(EVENTO)
-			// IL PROBLEMA  CHE  COME SE NON VENISSE EFFETTUATO. BISOGNA CAPIRE IL PERCH.
-			//DAto che questo non viene eseguito, tutte le stringhe che si prende il parser , risultano vuote nella visualizzazione.
-		}
+//		if( menuItems.size() == 0 ) {
+//			//Do nothings 
+//			Toast t = Toast.makeText(getActivity(), "ATTENDI", Toast.LENGTH_LONG);
+//			t.show();
+//		}
 		
+//		for(int i = 0 ; i < menuItems.size() ; i++) {
+//			EventsDescriptionParser p = new EventsDescriptionParser(menuItems.get(i));
+//			p.execute();
+//			// QUESTO CICLO FOR EFFETTUA IL PARSER DELLA PAGINA DI OGNI EVENTO E SALVA TUTTO NELL OGGETTO PASSATOGLI(EVENTO)
+//			// IL PROBLEMA  CHE  COME SE NON VENISSE EFFETTUATO. BISOGNA CAPIRE IL PERCH.
+//			//DAto che questo non viene eseguito, tutte le stringhe che si prende il parser , risultano vuote nella visualizzazione.
+//		}
+		mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
+		mAdapter.notifyDataSetChanged();
+		listView.setAdapter(mAdapter);
 		
 
 
@@ -73,7 +81,7 @@ public class FragmentB extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		ricarica();
+		
 
 
 
@@ -81,6 +89,14 @@ public class FragmentB extends ListFragment {
 	}
 	
 	public void ricarica(){
+		for(int i = 0 ; i < menuItems.size() ; i++) {
+			EventsDescriptionParser p = new EventsDescriptionParser(menuItems.get(i));
+			p.execute();
+			// QUESTO CICLO FOR EFFETTUA IL PARSER DELLA PAGINA DI OGNI EVENTO E SALVA TUTTO NELL OGGETTO PASSATOGLI(EVENTO)
+			// IL PROBLEMA  CHE  COME SE NON VENISSE EFFETTUATO. BISOGNA CAPIRE IL PERCH.
+			//DAto che questo non viene eseguito, tutte le stringhe che si prende il parser , risultano vuote nella visualizzazione.
+		}
+		
 		mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
 		mAdapter.notifyDataSetChanged();
 		listView.setAdapter(mAdapter);

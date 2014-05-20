@@ -79,11 +79,11 @@ public class EventsDescriptionParser extends AsyncTask<Void, Void, String> {
 				      		TagNode divElem[] = liElements[i].getElementsByName("div", true);
 				      		
 				      		if(divElem[0].getText().equals("Date /")) {
-				      			event.setDataText(liElements[i].getText().toString());
+				      			event.setDataText(liElements[i].getText().toString()+"CIAO");
 				      			
 				      		}
 				      		if(divElem[0].getText().equals("Venue /")) {
-				      			event.setAddress(liElements[i].getText().toString());
+				      			event.setAddress(liElements[i].getText().toString()+"CIAO");
 				      		}
 				      		if(divElem[0].getText().equals("Cost /")) {
 				      			event.setCosto(liElements[i].getText().toString());
