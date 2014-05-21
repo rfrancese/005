@@ -71,9 +71,10 @@ public class EventsParser extends AsyncTask<Void, Void, String> {
 		return null;
 	}
 	
-	protected void onProgressUpdate(Integer...integers){
-		
-	}
+	protected void onProgressUpdate(Integer... progress) {
+       Toast t = Toast.makeText(thisContext, "progress : "+progress[0], Toast.LENGTH_SHORT);
+       t.show();
+    }
 	protected void onPostExecute(String result) {
 		Evento nuovo;
 
@@ -95,33 +96,55 @@ public class EventsParser extends AsyncTask<Void, Void, String> {
 					nuovo.setHref("http://www.residentadvisor.net"+x.getAttributeByName("href"));
 					nuovo.setDataText(time[z].getText().toString().substring(0, 10));
 					z++;
-					menuItems.add(nuovo);					
+					menuItems.add(nuovo);
+					
+				}
+			
+			}
+
+			
+			
+			
+		ArrayList<String> allSmallDes = new ArrayList<String>();
+		
+		
+		TagNode h1[] = rootNode.getElementsByName("h1", true);
+		for(int s = 0; s < h1.length; s++ ) {
+			if(  !(h1[s].hasAttribute("imteprop"))) {
+				TagNode span[]=h1[s].getElementsByName("span",true);
+				if(span.length!=0) {
+//					Toast t=Toast.makeText(thisContext,span[0].getText().toString() , Toast.LENGTH_SHORT);
+//					t.show();
+					allSmallDes.add(span[0].getText().toString());
+					
 				}
 				
-
 			}
-
-			
-			
+		}
+		
+		Toast t=Toast.makeText(thisContext, "menuItemsSize :"+menuItems.size()+" SmallDescriptionSize:"+allSmallDes.size(), Toast.LENGTH_SHORT);
+		t.show();
+		
+		for(int z1=0; z1 < allSmallDes.size();z1++) menuItems.get(z1).setSmallDescription(allSmallDes.get(z1));
+		
+		
 		
 			for(int n = 0 ; n < menuItems.size() ; n++) {
-				for (int i = 0; Elements != null && i < Elements.length; i++) {
-					TagNode  y = Elements[i];
-					if(y.hasAttribute("href") && (!y.hasAttribute("title"))){
-						if(y.getAttributeByName("href").equals(menuItems.get(n).getHref())) {
-							String img_src = y.getElementsByName("img", true)[0].getAttributeByName("src");
-							menuItems.get(n).setSrcImgSmall("http://www.residentadvisor.net"+img_src);
-							menuItems.get(n).setNome(img_src);
-							String img_src_big ="http://www.residentadvisor.net"+img_src.replaceFirst("-list.jpg", "-0-front.jpg");
-							menuItems.get(n).setSrcImgBig(img_src_big);
-							menuItems.get(n).setNome(menuItems.get(n).getSrcImgSmall());
-							menuItems.get(n).setDataText("ciaopooooo");		
-						}
-						
-						
-					}
+		
+				TagNode pic[] = rootNode.getElementsByName("img", true);
+				
+				
+				for (int i = 0; pic != null && i < pic.length; i++) {
+					String img_src ="http://www.residentadvisor.net"+ pic[i].getAttributeByName("src").toString();
+					menuItems.get(i).setSrcImgSmall(img_src);
+					String img_src_big =img_src.replaceFirst("-list.jpg", "-0-front.jpg");
+					menuItems.get(i).setSrcImgBig(img_src_big);
+					
 				}
+
 			}
+			
+			
 			
 		}catch(Exception e)
 		{

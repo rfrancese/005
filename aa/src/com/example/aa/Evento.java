@@ -1,11 +1,14 @@
 package com.example.aa;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.GregorianCalendar;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 public class Evento {
@@ -23,8 +26,35 @@ public class Evento {
 	private String srcImgBig;
 	private String bigDescription;
 	private String lineUp;
+	private String smallDesc;
+	private Drawable imageSmall;
+	private Drawable imageBig;
 	
 	
+	
+	
+	public Evento(String name,String luogo1,GregorianCalendar data1){
+		nome=name;
+		luogo=luogo1;
+		data=data1;
+
+
+
+	}
+	public Evento(){
+		nome=null;
+		luogo=null;
+		data=null;
+
+	}
+	
+	
+	public String getSmallDescription(){
+		return smallDesc;
+	}
+	public void setSmallDescription(String bd){
+		this.smallDesc = bd;
+	}
 	public String getBigDescription(){
 		return bigDescription;
 	}
@@ -60,15 +90,9 @@ public class Evento {
 	}
 	public void setSrcImgSmall(String srcImgSmall) {
 		this.srcImgSmall = srcImgSmall;
+		imageSmall = loadImageFromWebOperations(srcImgSmall);
 		 
-		try {
-			URL imageurl = new URL(srcImgSmall);
-			Bitmap bitmap = BitmapFactory.decodeStream(imageurl.openConnection().getInputStream());
-			this.setImgBtmSmall(bitmap);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	public String getSrcImgBig() {
 		return srcImgBig;
@@ -76,28 +100,18 @@ public class Evento {
 	public void setSrcImgBig(String srcImgBig) {
 		this.srcImgBig = srcImgBig;
 		
-		try {
-			URL imageurl = new URL(srcImgBig);
-			this.setImgBtmBig(BitmapFactory.decodeStream(imageurl.openConnection().getInputStream()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		imageBig = loadImageFromWebOperations(srcImgBig);
+		
+		
 	}
-	public Evento(String name,String luogo1,GregorianCalendar data1){
-		nome=name;
-		luogo=luogo1;
-		data=data1;
-
-
-
+	public Drawable getImageSmall() {
+		return imageSmall;
 	}
-	public Evento(){
-		nome=null;
-		luogo=null;
-		data=null;
-
+	
+	public Drawable getImageBig() {
+		return imageBig;
 	}
+	
 
 	public void setHref(String href) {
 		this.href = href;
@@ -127,6 +141,7 @@ public class Evento {
 	}
 	public void setImgBtmSmall(Bitmap imgBtmSmall) {
 		this.imgBtmSmall = imgBtmSmall;
+		
 	}
 	public Bitmap getImgBtmBig() {
 		return imgBtmBig;
@@ -137,12 +152,25 @@ public class Evento {
 	public GregorianCalendar getData(){
 		return this.data;
 	}
-	public CharSequence getNome(){
-		CharSequence nomechar=(CharSequence)nome;
-		return nomechar;
+	public String getNome(){
+		
+		return nome;
 	}
 	public CharSequence getLuogo(){
 		CharSequence nomechar=(CharSequence)luogo;
 		return nomechar;
 	}
+	
+	private Drawable loadImageFromWebOperations(String url) 
+	{ 
+		try 
+		{ 
+			InputStream is = (InputStream) new URL(url).getContent(); 
+			Drawable d = Drawable.createFromStream(is, "src name"); 
+			return d; 
+		}catch (Exception e) { 
+			System.out.println("Exc="+e); 
+			return null; 
+		} 
+	} 
 }

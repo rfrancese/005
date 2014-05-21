@@ -26,11 +26,13 @@ public class EventsDescriptionParser extends AsyncTask<Void, Void, String> {
     private Evento event = null;
     private TagNode rootNode;
     private String URL; 
+    private Context cont;
    
     
-    public EventsDescriptionParser(Evento event ){
+    public EventsDescriptionParser(Evento event,Context cont ){
     	this.event = event;
     	URL = event.getHref();
+    	this.cont = cont;
     }
     
   
@@ -75,37 +77,47 @@ public class EventsDescriptionParser extends AsyncTask<Void, Void, String> {
 				try{
 				      	TagNode liElements[] = rootNode.getElementsByName("li", true);
 				      	
-				      	for(int i = 0 ; liElements!=null && i < liElements.length ; i++){
-				      		TagNode divElem[] = liElements[i].getElementsByName("div", true);
-				      		
-				      		if(divElem[0].getText().equals("Date /")) {
-				      			event.setDataText(liElements[i].getText().toString()+"CIAO");
-				      			
-				      		}
-				      		if(divElem[0].getText().equals("Venue /")) {
-				      			event.setAddress(liElements[i].getText().toString()+"CIAO");
-				      		}
-				      		if(divElem[0].getText().equals("Cost /")) {
-				      			event.setCosto(liElements[i].getText().toString());
-				      		}
-				      		if(divElem[0].getText().equals("Promoters /")) {
-				      			event.setCosto(liElements[i].getText().toString());
-				      		}
-				      	}
+//				      	for(int i = 0 ; liElements!=null && i < liElements.length ; i++){
+//				      		
+//			      			
+//				      		TagNode divElem[] = liElements[i].getElementsByName("div", true);
+//				      		
+//				      		if(divElem[0].getText().toString().equals("Date /")) {
+//				      			event.setDataText(liElements[i].getText().toString()+"CIAO");
+//				      			
+//				      			
+//				      		}
+//				      		if(divElem[0].getText().equals("Venue /")) {
+//				      			event.setAddress(liElements[i].getText().toString()+"CIAO");
+//				      			
+//				      		}
+//				      		if(divElem[0].getText().equals("Cost /")) {
+//				      			event.setCosto(liElements[i].getText().toString());
+//				      			Toast r = Toast.makeText(cont, "Entrato nel costo", Toast.LENGTH_SHORT);
+//				      			r.show();
+//				      		}
+//				      		if(divElem[0].getText().equals("Promoters /")) {
+//				      			event.setCosto(liElements[i].getText().toString());
+//				      		}
+//				      	}
 				
 				     TagNode pElements[] = rootNode.getElementsByName("p",true);
 				      String allDescription="";
-		        	  for (int x = 0 ; x < pElements.length ; x++) {
-		        		  if(pElements[x].getAttributeByName("class").equals("lineup large")) {
-		        			  
-		        			  
-		        			 TagNode childs[] =  pElements[x].getChildTags();
-		        			 for(int z = 0 ; z < childs.length ; z++) {
-		        				 allDescription = allDescription+childs[z].getText().toString();
-		        			 }
-		        		  }
-		        	  }
-		        	  event.setBigDescription(allDescription);
+				      
+				      for(int x = 0 ; x< pElements.length;x++){
+				    	  if(!(pElements[x].hasAttribute("class"))) {
+				    		  String description = pElements[x].getText().toString();
+//				    		  Toast v = Toast.makeText(cont, "Descipt :"+ description.substring(0,300) , Toast.LENGTH_SHORT);
+//				    		  v.show();
+				    		  if(description.length() > 0) {
+				    			  event.setBigDescription(description);
+				    		  }
+				    	  }
+				      }
+				      
+
+		        	  
+		        	  
 		        	  
 		        	   
 
