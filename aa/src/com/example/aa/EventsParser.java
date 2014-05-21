@@ -13,6 +13,7 @@ import org.htmlcleaner.TagNode;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,7 +23,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class EventsParser extends AsyncTask<Void, Void, String> {
-
+   
+	private ProgressDialog pDialog;
 	private ArrayList<Evento> menuItems;
 	private TagNode rootNode;
 	private String URL = "http://www.residentadvisor.net/events.aspx?ai=172" ; 
@@ -33,8 +35,13 @@ public class EventsParser extends AsyncTask<Void, Void, String> {
 		this.menuItems = menuItems;
 		this.elementName = elementName;
 		thisContext = context;
+		pDialog = new ProgressDialog(context);
 	}
-
+	protected void onPreExecute() {
+        super.onPreExecute();
+        this.pDialog.setMessage("Progress start");
+        this.pDialog.show();
+		}
 
 	@Override
 	protected String doInBackground(Void... arg0) {
@@ -150,7 +157,8 @@ public class EventsParser extends AsyncTask<Void, Void, String> {
 		{
 			e.printStackTrace();
 		}
-
+		 if (pDialog.isShowing())
+             pDialog.dismiss();
 	} 
 
 	
