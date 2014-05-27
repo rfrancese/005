@@ -66,7 +66,7 @@ public class FragmentB extends ListFragment {
 ////			EventsDescriptionParser p = new EventsDescriptionParser(menuItems.get(i));
 ////			p.execute();
 ////			// QUESTO CICLO FOR EFFETTUA IL PARSER DELLA PAGINA DI OGNI EVENTO E SALVA TUTTO NELL OGGETTO PASSATOGLI(EVENTO)
-////			// IL PROBLEMA è CHE è COME SE NON VENISSE EFFETTUATO. BISOGNA CAPIRE IL PERCHè.
+////			// IL PROBLEMA ÔøΩ CHE ÔøΩ COME SE NON VENISSE EFFETTUATO. BISOGNA CAPIRE IL PERCHÔøΩ.
 ////			//DAto che questo non viene eseguito, tutte le stringhe che si prende il parser , risultano vuote nella visualizzazione.
 ////		}
 
@@ -129,7 +129,7 @@ public class FragmentB extends ListFragment {
 			listView.setAdapter(mAdapter);
 		}
 		
-		if(menuItems.size() != 0) {
+	/*	if(menuItems.size() != 0) {
 
 			for(int i = 0 ; i < menuItems.size() ; i++) {
 				
@@ -138,7 +138,7 @@ public class FragmentB extends ListFragment {
 			
 			
 			}
-		}
+		} */
 		
 //		EventsParser parser=new EventsParser(menuItems,elementName,this.getActivity());
 //		parser.execute();
@@ -158,8 +158,13 @@ public class FragmentB extends ListFragment {
 		super.onDetach();
 	}
 	public void onListItemClick(ListView l, View v, int position, long id) {
-
+       String col= menuItems.get(position).getHref();
+       final Bundle bundle = new Bundle();
+       bundle.putString("href", col);
+       Log.i("BUNDLE", bundle.toString());
+       
 		Fragment fragment2 = new EventoView();
+		fragment2.setArguments(bundle); 
 		android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
 		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.frame_container, fragment2);

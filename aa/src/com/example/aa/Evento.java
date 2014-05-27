@@ -47,7 +47,12 @@ public class Evento {
 		data=null;
 
 	}
-	
+	public void setCost(String cost){
+		this.costo=cost;
+	}
+	public String getCost(){
+		return costo;
+	}
 	
 	public String getSmallDescription(){
 		return smallDesc;
@@ -169,7 +174,7 @@ public class Evento {
 			Drawable d = Drawable.createFromStream(is, "src name"); 
 			return d; 
 		}catch (Exception e) { 
-			System.out.println("Exc="+e); 
+			e.printStackTrace();
 			return null; 
 		} 
 	} 

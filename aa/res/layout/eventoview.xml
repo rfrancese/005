@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="455dp"
     android:columnCount="1" >
 
-    <ImageView
+     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="120dp"
         android:layout_height="150dp"
@@ -15,7 +20,7 @@
         android:src="@drawable/ic_launcher11" />
 
     <TextView
-        android:id="@+id/titolo1"
+        android:id="@+id/descr1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView1"
@@ -23,7 +28,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/descr1"
+        android:id="@+id/titolo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/imageView1"
@@ -32,3 +37,4 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
+</ScrollView>

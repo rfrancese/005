@@ -54,6 +54,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		eventList=new ArrayList<Evento>();
+		
 		setContentView(R.layout.activity_main);
 		//COMMENTO DA QUI 
 //		viewPager=(ViewPager)findViewById(R.id.pager);
@@ -223,10 +224,7 @@ public class MainActivity extends FragmentActivity {
 		          // Pass any configuration change to the drawer toggles
 		           mDrawerToggle.onConfigurationChanged(newConfig);
 		    }
-		     public ArrayList<Evento> getList(){
-		    	 return this.eventList;
-		     }
-		     
+		      
 		    
 }
 

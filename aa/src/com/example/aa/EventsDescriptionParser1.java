@@ -21,7 +21,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
-public class EventsDescriptionParser extends AsyncTask<Void, Void, String> {
+public class EventsDescriptionParser1 extends AsyncTask<Void, Void, String> {
 	
     private Evento event = null;
     private TagNode rootNode;
@@ -29,10 +29,16 @@ public class EventsDescriptionParser extends AsyncTask<Void, Void, String> {
     private Context cont;
    
     
-    public EventsDescriptionParser(Evento event,Context cont ){
+    public EventsDescriptionParser1(Evento event,Context cont ){
     	this.event = event;
     	URL = event.getHref();
     	this.cont = cont;
+    }
+    public EventsDescriptionParser1(Evento e,String href,Context cont ){
+    	
+    	URL = href;
+    	this.cont = cont;
+    	event=e;
     }
     
   
@@ -105,10 +111,11 @@ public class EventsDescriptionParser extends AsyncTask<Void, Void, String> {
 				      String allDescription="";
 				      
 				      for(int x = 0 ; x< pElements.length;x++){
+				    	 
 				    	  if(!(pElements[x].hasAttribute("class"))) {
+				    		  
 				    		  String description = pElements[x].getText().toString();
-//				    		  Toast v = Toast.makeText(cont, "Descipt :"+ description.substring(0,300) , Toast.LENGTH_SHORT);
-//				    		  v.show();
+			    		  
 				    		  if(description.length() > 0) {
 				    			  event.setBigDescription(description);
 				    		  }
