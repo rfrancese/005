@@ -29,6 +29,7 @@ public class Evento {
 	private String smallDesc;
 	private Drawable imageSmall;
 	private Drawable imageBig;
+	private static URL urlImgBig;
 	
 	
 	
@@ -178,4 +179,25 @@ public class Evento {
 			return null; 
 		} 
 	} 
+	public static Bitmap getBitmapFromURL() {
+	    try {
+	   /*     URL url = new URL(src); */
+	        URL url=getUrlImg();
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setDoInput(true);
+	        connection.connect();
+	        InputStream input = connection.getInputStream();
+	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+	        return myBitmap;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	public void setUrlImg(URL s){
+		urlImgBig=s;
+	}
+	public static URL getUrlImg(){
+		return urlImgBig;
+	}
 }

@@ -46,7 +46,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Evento> {
 			holder.txtMenuName = (TextView) convertView.findViewById(R.id.menu_name);
 			holder.txtMenuName.setText(rowItem.getNome());
 			holder.imageView = (ImageView) convertView.findViewById(R.id.list_image);
-			holder.imageView.setImageDrawable(rowItem.getImageBig());
+			holder.imageView.setBackgroundResource(rowItem.getBitmapFromURL());
 			         holder.txtDate = (TextView) convertView.findViewById(R.id.data);
 			         holder.txtDate.setText(rowItem.getDataString());
 			holder.txtMenuDesc = (TextView) convertView.findViewById(R.id.description);

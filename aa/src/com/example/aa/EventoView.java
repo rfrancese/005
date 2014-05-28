@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
@@ -38,6 +40,7 @@ private Evento p1;
 private Evento event;
 public ProgressDialog pDialog;
 
+final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
@@ -169,10 +172,70 @@ public ProgressDialog pDialog;
 						    		  }
 						    	  }
 						      }
-						      
+						/*      TagNode ele[]=rootNode.getElementsByName("div",true);
+						         String nome="";
+						         for(int x = 0 ; x< ele.length;x++){
+							    	 
+							    	  if(!(ele[x].hasAttribute("class"))) {
+							    		  
+							    		  String nome1 = ele[x].getText().toString();
+						    		  
+							    		  if(nome1.length() > 0) {
+							    			  event.setNome(nome1);
+							    		  }
+							    	  }
+						         } */
+						         Object[] name_event=rootNode.evaluateXPath("/body/header/div[@id='navContainer']/div[@id='sectionHead']/h1");
+						         for(int x = 0 ; x< name_event.length;x++){
+						         if (name_event.length > 0) {
+						             // CASTED TO A TAGNODE
+						             TagNode info_node = (TagNode) name_event[x];
+						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
+						             String info = info_node.getText().toString();
+						             event.setNome(info);
+						         }
+						         }
+						         Object[] costo_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@class='clearfix']/ul[@class='clearfix']/li");
+						         for(int x = 0 ; x< costo_event.length;x++){
+						         if (costo_event.length > 0) {
+						             // CASTED TO A TAGNODE
+						             TagNode info_node = (TagNode) costo_event[x];
+						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
+						           
+						           String info=info_node.getText().toString();
+						           event.setCosto(info);
+						            
+						         }
+						         }
+						         Object[] address_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@class='clearfix']/ul[@class='clearfix']/li[@class='wide']");
+						         for(int x = 0 ; x< address_event.length;x++){
+						         if (address_event.length > 0) {
+						             // CASTED TO A TAGNODE
+						             TagNode info_node = (TagNode) address_event[x];
+						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
+						           
+						           String info=info_node.getText().toString();
+						           event.setAddress(info);
+						            
+						         }
+						         }
+						         Object[] foto_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='alt']/div[@class='content clearfix']/div[@id='event-item']/div[@class='flyer']/a/img");
+						         for(int x = 0 ; x< foto_event.length;x++){
+						         if (foto_event.length > 0) {
+						             // CASTED TO A TAGNODE
+						             TagNode info_node = (TagNode) foto_event[x];
+						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
+						           
+						           String info="http://www.residentadvisor.net"+info_node.getAttributeByName("src").toString();
+						           URL u=new URL(info);
+						           event.setUrlImg(u);
+						            
+						         }
+						         }
 
-						      titolo.setText("TITOLOOO: "+event.getNome());
+						      titolo.setText("TITOLOOO: "+event.getNome()+"\n"+"  COSTO: "+event.getCosto()+"\n"+"ADDRESS: "+event.getAddress());
 								descr.setText("DESCRIZIONE: "+event.getBigDescription());
+								im.setImageBitmap(event.getImgBtmBig());
 				        	  
 				        	  
 				        	   

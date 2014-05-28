@@ -122,13 +122,26 @@ public class EventsDescriptionParser1 extends AsyncTask<Void, Void, String> {
 				    	  }
 				      }
 				      
+				      TagNode ele[]=rootNode.getElementsByName("h1",true);
+				         String nome="";
+				         for(int x = 0 ; x< ele.length;x++){
+					    	 
+					    	  if(!(ele[x].hasAttribute("class"))) {
+					    		  
+					    		  String n = ele[x].getText().toString();
+				    		  
+					    		  if(nome.length() > 0) {
+					    			  event.setNome(nome);
+					    		  }
+					    	  }
+				      
 
 		        	  
 		        	  
 		        	  
 		        	   
-
-				}
+				         }
+				         }
 				 catch(Exception e)
 		        {
 		            e.printStackTrace();
