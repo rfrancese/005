@@ -71,13 +71,14 @@ public class CustomArrayAdapter extends ArrayAdapter<Evento> {
 			
 		/*	holder.imageView.setImageDrawable(rowItem.loadImageFromWebOperations(rowItem.getSrcImgSmall())); */
 			
-			   GetXMLTask task = new GetXMLTask();
+			  // GetXMLTask task = new GetXMLTask();
 		        // Execute the task
-		        task.execute(new String[] { rowItem.getSrcImgSmall() });
+		       // task.execute(new String[] { rowItem.getSrcImgSmall() });
 			         holder.txtDate = (TextView) convertView.findViewById(R.id.data);
 			         holder.txtDate.setText(rowItem.getDataString());
 			holder.txtMenuDesc = (TextView) convertView.findViewById(R.id.description);
 			holder.txtMenuDesc.setText(rowItem.getSmallDescription());
+			holder.imageView.setImageBitmap(rowItem.getImgBtmSmall());
 			convertView.setTag(holder);
 
 			/*   
@@ -93,71 +94,72 @@ public class CustomArrayAdapter extends ArrayAdapter<Evento> {
        // holder.txtMenuDesc.setText(rowItem.getSmallDescription());
         /*
         holder.txtDate.setText(String.valueOf(rowItem.getData()) + " TL"); */
-			holder.imageView.setImageDrawable(rowItem.getImageBig());
+			//holder.imageView.setImageDrawable(rowItem.getImageBig());
 		}
 		v.add(holder);
 		return convertView;
 	}
 
 	
-	 private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
-
-	        @Override
-	       
-	        protected Bitmap doInBackground(String... urls) {
-	        	
-	            Bitmap map = null;
-	            for (String url : urls) {
-	                map = downloadImage(url);
-	            }
-	            return map;
-	        }
-	 
-	        // Sets the Bitmap returned by doInBackground
-	        @Override
-	        protected void onPostExecute(Bitmap result) {
-	        	for(ViewHolder a:v)
-	        	a.imageView.setImageBitmap(result);
-	        }
-	 
-	        // Creates Bitmap from InputStream and returns it
-	        private Bitmap downloadImage(String url) {
-	            Bitmap bitmap = null;
-	            InputStream stream = null;
-	            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-	            bmOptions.inSampleSize = 1;
-	 
-	            try {
-	                stream = getHttpConnection(url);
-	                bitmap = BitmapFactory.
-	                        decodeStream(stream, null, bmOptions);
-	                stream.close();
-	            } catch (IOException e1) {
-	                e1.printStackTrace();
-	            }
-	          
-	            return bitmap;
-	        }
-	 
-	        // Makes HttpURLConnection and returns InputStream
-	        private InputStream getHttpConnection(String urlString)
-	                throws IOException {
-	            InputStream stream = null;
-	            URL url = new URL(urlString);
-	            URLConnection connection = url.openConnection();
-	 
-	            try {
-	                HttpURLConnection httpConnection = (HttpURLConnection) connection;
-	                httpConnection.setRequestMethod("GET");
-	                httpConnection.connect();
-	 
-	                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-	                    stream = httpConnection.getInputStream();
-	                }
-	            } catch (Exception ex) {
-	                ex.printStackTrace();
-	            }
-	            return stream;
-	        }
-	    }
+//	 private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
+//
+//	        @Override
+//	       
+//	        protected Bitmap doInBackground(String... urls) {
+//	        	
+//	            Bitmap map = null;
+//	            for (String url : urls) {
+//	                map = downloadImage(url);
+//	            }
+//	            return map;
+//	        }
+//	 
+//	        // Sets the Bitmap returned by doInBackground
+//	        @Override
+//	        protected void onPostExecute(Bitmap result) {
+//	        	
+//	        	holder.imageView.setImageBitmap(result);
+//	        	
+//	        }
+//	 
+//	        // Creates Bitmap from InputStream and returns it
+//	        private Bitmap downloadImage(String url) {
+//	            Bitmap bitmap = null;
+//	            InputStream stream = null;
+//	            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//	            bmOptions.inSampleSize = 1;
+//	 
+//	            try {
+//	                stream = getHttpConnection(url);
+//	                bitmap = BitmapFactory.
+//	                        decodeStream(stream, null, bmOptions);
+//	                stream.close();
+//	            } catch (IOException e1) {
+//	                e1.printStackTrace();
+//	            }
+//	          
+//	            return bitmap;
+//	        }
+//	 
+//	        // Makes HttpURLConnection and returns InputStream
+//	        private InputStream getHttpConnection(String urlString)
+//	                throws IOException {
+//	            InputStream stream = null;
+//	            URL url = new URL(urlString);
+//	            URLConnection connection = url.openConnection();
+//	 
+//	            try {
+//	                HttpURLConnection httpConnection = (HttpURLConnection) connection;
+//	                httpConnection.setRequestMethod("GET");
+//	                httpConnection.connect();
+//	 
+//	                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+//	                    stream = httpConnection.getInputStream();
+//	                }
+//	            } catch (Exception ex) {
+//	                ex.printStackTrace();
+//	            }
+//	            return stream;
+//	        }
+//	    }
 }

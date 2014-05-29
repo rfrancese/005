@@ -55,13 +55,14 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
     	  im=(ImageView) v.findViewById(R.id.imageView1);
     	  titolo=(TextView) v.findViewById(R.id.descr1);
     	  descr = (TextView)  v.findViewById(R.id.titolo1);
+    	  
     	  event=new Evento();
     	  Bundle bundle = getArguments();
     	  String href=bundle.getString("href");
     	  EventsDescriptionParser p = new EventsDescriptionParser(event,href,getActivity());
 			p.execute();
 		/*	 */
-		    
+			
     	  return v;
       }
 	  public void onStart(){
