@@ -167,7 +167,7 @@ public class Evento {
 		return nomechar;
 	}
 	
-	private Drawable loadImageFromWebOperations(String url) 
+	Drawable loadImageFromWebOperations(String url) 
 	{ 
 		try 
 		{ 
