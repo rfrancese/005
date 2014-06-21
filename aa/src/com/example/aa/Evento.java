@@ -14,6 +14,7 @@ import android.media.Image;
 import android.os.AsyncTask;
 
 public class Evento {
+	private String nav;
 	private String luogo;
 	private String nome;
 	private GregorianCalendar data;
@@ -114,7 +115,12 @@ public class Evento {
 		
 		
 	}
-	
+	public void setIndi(String s){
+		nav=s;
+	}
+	public String getIndi(){
+		return nav;
+	}
 	
 
 	public void setHref(String href) {
@@ -186,7 +192,7 @@ public class Evento {
             Bitmap map[] = new Bitmap[2];
             for (String url : urls) {
                 map[0] = downloadImage(url);
-                String img_src_big =url.replaceFirst("-list.jpg", "-0-front.jpg");
+                String img_src_big =url.replaceFirst("-list.jpg", "-front.jpg");
                 map[1] = downloadImage(img_src_big);
             }
             return map;

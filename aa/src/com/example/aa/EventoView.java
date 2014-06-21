@@ -18,6 +18,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -27,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +39,9 @@ public class EventoView extends Fragment {
 private ImageView im;
 private TextView titolo;
 private TextView descr;
+private TextView cost;
+private TextView ind;
+private Button b1;
 private Evento p1;
 private Evento event;
 public ProgressDialog pDialog;
@@ -55,6 +61,10 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
     	  im=(ImageView) v.findViewById(R.id.imageView1);
     	  titolo=(TextView) v.findViewById(R.id.descr1);
     	  descr = (TextView)  v.findViewById(R.id.titolo1);
+    	  cost=(TextView)  v.findViewById(R.id.costo);
+    	  ind=(TextView)  v.findViewById(R.id.indirizzo);
+    	  b1=(Button) v.findViewById(R.id.button1);
+    	  
     	  
     	  event=new Evento();
     	  Bundle bundle = getArguments();
@@ -62,9 +72,16 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
     	  EventsDescriptionParser p = new EventsDescriptionParser(event,href,getActivity());
 			p.execute();
 		/*	 */
-			
+			b1.setOnClickListener(new View.OnClickListener() {
+				  public void onClick(View view) { 
+					  Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
+							    Uri.parse("http://maps.google.com/maps?daddr="+event.getIndi()));
+							startActivity(intent);
+				  }
+				});
     	  return v;
       }
+	  
 	  public void onStart(){
 		  super.onStart();
 		 
@@ -204,7 +221,10 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
 						           
 						           String info=info_node.getText().toString();
+						          if( info.startsWith("Cost /", 0)){
+						        	  info.replace("Cost /", "");
 						           event.setCosto(info);
+						          }
 						            
 						         }
 						         }
@@ -216,7 +236,16 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
 						           
 						           String info=info_node.getText().toString();
-						           event.setAddress(info);
+						           if( info.startsWith("Venue /", 0)){
+						        	   
+						        	   String newS = info.substring(7);
+						        	   event.setAddress(newS);
+						        	   
+						        	   int index = newS.indexOf("Via");
+						        	String  ini = newS.substring(index);
+						        	   ini.trim();
+						        	   event.setIndi(ini);
+						           }
 						            
 						         }
 						         }
@@ -229,13 +258,17 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						           
 						           String info="http://www.residentadvisor.net"+info_node.getAttributeByName("src").toString();
 						           URL u=new URL(info);
+						           event.setSrcImgBig(info);
 						           event.setUrlImg(u);
 						            
 						         }
 						         }
 
-						      titolo.setText("TITOLOOO: "+event.getNome()+"\n"+"  COSTO: "+event.getCosto()+"\n"+"ADDRESS: "+event.getAddress());
-								descr.setText("DESCRIZIONE: "+event.getBigDescription());
+						      titolo.setText("DESCRIZIONE: "+event.getBigDescription()+"\n");
+								cost.setText(event.getCosto()+"\n");
+								ind.setText(event.getAddress()+"\n");
+						      descr.setText(event.getNome()+"\n");
+						      
 								im.setImageBitmap(event.getImgBtmBig());
 				        	  
 				        	  
