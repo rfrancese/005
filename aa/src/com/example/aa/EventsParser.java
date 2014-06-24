@@ -89,67 +89,46 @@ public class EventsParser extends AsyncTask<Void, Void, String> {
 		try{
 			
 
-			TagNode Elements[] = rootNode.getElementsByName(elementName, true);
-			TagNode time[] = rootNode.getElementsByName("time", true);
-			int z=0;
-			for (int i = 0; Elements != null && i < Elements.length; i++)
-			{
-				nuovo = new Evento();
-
-				
-				TagNode x = Elements[i];
-				if(x.hasAttribute("title") && x.hasAttribute("href")) {
-					nuovo.setNome(x.getText().toString());
-					nuovo.setHref("http://www.residentadvisor.net"+x.getAttributeByName("href"));
-					nuovo.setDataText(time[z].getText().toString().substring(0, 10));
-					z++;
-					menuItems.add(nuovo);
+			
+			TagNode ul[] = rootNode.getElementsByName("ul", true);
+			
+			
+			for(int x = 1 ; x < ul.length ; x++ ) {
+				if(ul[x].hasAttribute("id")) {
+					
+					if( ul[x].getAttributeByName("id").compareTo("items") == 0) {
+						//allora il tag ul ha id items e ha al suo interno la lista di items
+						TagNode li[] = ul[x].getElementsByName("li", true);
+						
+						
+						for(int liNumber = 1; liNumber < li.length ; liNumber ++) 
+						{
+							if(li[liNumber].getElementsByName("p", true).length == 0 ) {
+								
+								nuovo = new Evento();
+								
+								nuovo.setDataText(li[liNumber].getElementsByName("time", true)[0].getText().toString());
+								nuovo.setSrcImgSmall("http://www.residentadvisor.net"+li[liNumber].getElementsByName("img", true)[0].getAttributeByName("src"));
+								TagNode h1[] = li[liNumber].getElementsByName("h1", true);
+								nuovo.setSmallDescription(h1[0].getElementsByName("span", true)[0].getText().toString());
+								nuovo.setHref("http://www.residentadvisor.net"+h1[0].getElementsByName("a", true)[0].getAttributeByName("href"));
+								nuovo.setNome(h1[0].getElementsByName("a", true)[0].getText().toString());
+								menuItems.add(nuovo);
+							}
+							
+							
+							
+						}
+						
+					}
 					
 				}
-			
-			}
-
-			
-			
-			
-		ArrayList<String> allSmallDes = new ArrayList<String>();
-		
-		
-		TagNode h1[] = rootNode.getElementsByName("h1", true);
-		for(int s = 0; s < h1.length; s++ ) {
-			if(  !(h1[s].hasAttribute("imteprop"))) {
-				TagNode span[]=h1[s].getElementsByName("span",true);
-				if(span.length!=0) {
-//					Toast t=Toast.makeText(thisContext,span[0].getText().toString() , Toast.LENGTH_SHORT);
-//					t.show();
-					allSmallDes.add(span[0].getText().toString());
 					
-				}
-				
-			}
-		}
-		
-		Toast t=Toast.makeText(thisContext, "menuItemsSize :"+menuItems.size()+" SmallDescriptionSize:"+allSmallDes.size(), Toast.LENGTH_SHORT);
-		t.show();
-		
-		for(int z1=0; z1 < allSmallDes.size();z1++) menuItems.get(z1).setSmallDescription(allSmallDes.get(z1));
-		
-		
-		
-			for(int n = 0 ; n < menuItems.size() ; n++) {
-		
-				TagNode pic[] = rootNode.getElementsByName("img", true);
-				
-				
-				for (int i = 0; pic != null && i < pic.length; i++) {
-					String img_src ="http://www.residentadvisor.net"+ pic[i].getAttributeByName("src").toString();
-					menuItems.get(i).setSrcImgSmall(img_src);
-					String img_src_big =img_src.replaceFirst("-list.jpg", "-0-front.jpg");
-					menuItems.get(i).setSrcImgBig(img_src_big);
-					
-				}
+			} // FINE FOR PRINCIPALE 
+			
+			
+			
 
-			}
 			
 			
 			

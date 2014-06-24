@@ -114,6 +114,8 @@ public class Evento {
 		
 		
 		
+		
+		
 	}
 	public void setIndi(String s){
 		nav=s;
@@ -173,9 +175,6 @@ public class Evento {
 	
 	
 	
-	public void setUrlImg(URL s){
-		urlImgBig=s;
-	}
 	public static URL getUrlImg(){
 		return urlImgBig;
 	}
@@ -189,11 +188,11 @@ public class Evento {
        
         protected Bitmap[] doInBackground(String... urls) {
         	
-            Bitmap map[] = new Bitmap[2];
+            Bitmap map[] = new Bitmap[1];
             for (String url : urls) {
                 map[0] = downloadImage(url);
-                String img_src_big =url.replaceFirst("-list.jpg", "-front.jpg");
-                map[1] = downloadImage(img_src_big);
+//                String img_src_big =url.replaceFirst("-list.jpg", "-front.jpg");
+//                map[1] = downloadImage(img_src_big);
             }
             return map;
         }
@@ -203,7 +202,7 @@ public class Evento {
         protected void onPostExecute(Bitmap[] result) {
         	
         	setImgBtmSmall(result[0]);
-        	setImgBtmBig(result[1]);
+//        	setImgBtmBig(result[1]);
         	
         }
  
@@ -247,4 +246,7 @@ public class Evento {
             return stream;
         }
     }
+	
+	
+	
 }
