@@ -305,7 +305,7 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 	            return map;
 	        }
 	 
-	        // Sets the Bitmap returned by doInBackground
+	       
 	        @Override
 	        protected void onPostExecute(Bitmap[] result) {
 	        	
