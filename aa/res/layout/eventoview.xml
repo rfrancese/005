@@ -2,12 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
+    android:clickable="true" >
 
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="455dp"
-    android:columnCount="1" >
+    android:columnCount="1"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp" >
 
       <TextView
           android:id="@+id/titolo1"
@@ -50,16 +53,27 @@
           android:layout_height="150dp"
           android:layout_below="@+id/titolo1"
           android:layout_centerHorizontal="true"
+          android:clickable="true"
           android:src="@drawable/ic_launcher11" />
 
       <Button
           android:id="@+id/button1"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
           android:layout_below="@+id/descr1"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="38dp"
+          android:layout_marginTop="42dp"
           android:text="Avvia Navigazione" />
+
+      <Button
+          android:id="@+id/button2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBaseline="@+id/button1"
+          android:layout_alignBottom="@+id/button1"
+          android:layout_alignParentRight="true"
+          android:layout_toRightOf="@+id/button1"
+          android:text="Condividi" />
 
 </RelativeLayout>
 </ScrollView>

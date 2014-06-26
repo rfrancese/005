@@ -40,15 +40,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class EventoView extends Fragment {
+
 private ImageView im;
 private TextView titolo;
 private TextView descr;
 private TextView cost;
 private TextView ind;
 private Button b1;
+private Button b2;
 private Evento p1;
 private Evento event;
-public ProgressDialog pDialog;
 
 final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 
@@ -68,7 +69,7 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
     	  cost=(TextView)  v.findViewById(R.id.costo);
     	  ind=(TextView)  v.findViewById(R.id.indirizzo);
     	  b1=(Button) v.findViewById(R.id.button1);
-    	  
+    	  b2=(Button) v.findViewById(R.id.button2);
     	  
     	  event=new Evento();
     	  Bundle bundle = getArguments();
@@ -83,6 +84,27 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 							startActivity(intent);
 				  }
 				});
+			
+			b2.setOnClickListener(new View.OnClickListener() {
+				  public void onClick(View view) { 
+					  Intent i = new Intent(Intent.ACTION_SEND);
+						i.setType("text/plain");
+						i.putExtra(Intent.EXTRA_TEXT,"EVENT FROM CLUBADVISOR APP \n"+  event.getNome().toUpperCase()+"\n Dettagli: "+event.getBigDescription() +"\n Indirizzo: "+event.getAddress()+"\n Prezzo: "+event.getCost());
+						startActivity(Intent.createChooser(i, "Condividi"));
+				  }
+				});
+			im.setOnClickListener(new View.OnClickListener() {
+
+		          @Override
+		          public void onClick(View v) {
+		        	  Intent intent = new Intent();
+		              intent.setAction(Intent.ACTION_VIEW);
+		              intent.addCategory(Intent.CATEGORY_BROWSABLE);
+		              intent.setData(Uri.parse(event.getSrcImgBig()));
+		              startActivity(intent);
+ 		          }
+
+		        });   
     	  return v;
       }
 	  
@@ -102,21 +124,30 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 		    private TagNode rootNode;
 		    private String URL; 
 		    private Context cont;
+		    private ProgressDialog pDialog;
+
 		   
 		    
 		    public EventsDescriptionParser(Evento event,Context cont ){
 		    	this.event = event;
 		    	URL = event.getHref();
 		    	this.cont = cont;
+		    	pDialog = new ProgressDialog(cont);
 		    }
 		    public EventsDescriptionParser(Evento e,String href,Context cont ){
 		    	
 		    	URL = href;
 		    	this.cont = cont;
 		    	event=e;
+		    	pDialog = new ProgressDialog(cont);
 		    }
 		    
-		 
+		    protected void onPreExecute() {
+		        super.onPreExecute();
+		        this.pDialog.setMessage("Progress start");
+		        this.pDialog.show();
+				}
+		    
 		  
 			@Override
 			protected String doInBackground(Void... arg0) {
@@ -286,6 +317,8 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 				        {
 				            e.printStackTrace();
 				        }
+						 if (pDialog.isShowing())
+				             pDialog.dismiss();
 							
 			    }
 
