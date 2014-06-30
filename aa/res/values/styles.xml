@@ -15,6 +15,13 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+       
+       
     </style>
+    
+     <color name="TitleColor">#75D1B7</color>
+        <color name="BackgroundColor">#DA7531</color> 
+         <color name="mainTitleColor">#221D0B</color>
 
 </resources>
+ 

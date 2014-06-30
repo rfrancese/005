@@ -10,7 +10,8 @@
     android:columnCount="1"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
-    android:paddingTop="15dp" >
+    android:paddingTop="15dp" 
+    android:background="@color/BackgroundColor">
 
       <TextView
           android:id="@+id/titolo1"
@@ -19,7 +20,9 @@
           android:layout_alignParentLeft="true"
           android:layout_alignParentTop="true"
           android:text="Large Text"
-          android:textAppearance="?android:attr/textAppearanceLarge" />
+          android:textAppearance="?android:attr/textAppearanceLarge"
+          android:textColor="@color/mainTitleColor"
+          />
 
       <TextView
           android:id="@+id/descr1"
@@ -28,7 +31,8 @@
           android:layout_alignParentLeft="true"
           android:layout_below="@+id/costo"
           android:layout_marginTop="50dp"
-          android:text="TextView" />
+          android:text="TextView"
+          android:textColor="@color/TitleColor" />
 
       <TextView
           android:id="@+id/costo"
@@ -37,7 +41,8 @@
           android:layout_alignParentLeft="true"
           android:layout_below="@+id/imageView1"
           android:layout_marginTop="40dp"
-          android:text="Costo" />
+          android:text="Costo" 
+          android:textColor="@color/TitleColor"/>
 
       <TextView
           android:id="@+id/indirizzo"
@@ -45,7 +50,8 @@
           android:layout_height="fill_parent"
           android:layout_alignParentLeft="true"
           android:layout_below="@+id/imageView1"
-          android:text="Indirizzo" />
+          android:text="Indirizzo" 
+          android:textColor="@color/TitleColor"/>
 
       <ImageView
           android:id="@+id/imageView1"
@@ -54,7 +60,8 @@
           android:layout_below="@+id/titolo1"
           android:layout_centerHorizontal="true"
           android:clickable="true"
-          android:src="@drawable/ic_launcher11" />
+          
+          android:textColor="@color/TitleColor"/>
 
       <Button
           android:id="@+id/button1"
@@ -63,7 +70,8 @@
           android:layout_alignParentLeft="true"
           android:layout_below="@+id/descr1"
           android:layout_marginTop="42dp"
-          android:text="Avvia Navigazione" />
+          android:text="Avvia Navigazione" 
+          android:textColor="@color/TitleColor"/>
 
       <Button
           android:id="@+id/button2"
@@ -73,7 +81,8 @@
           android:layout_alignBottom="@+id/button1"
           android:layout_alignParentRight="true"
           android:layout_toRightOf="@+id/button1"
-          android:text="Condividi" />
+          android:text="Condividi" 
+          android:textColor="@color/TitleColor"/>
 
 </RelativeLayout>
 </ScrollView>

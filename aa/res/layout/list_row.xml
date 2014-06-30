@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="5dip" >
+    android:padding="5dip" 
+     android:background="@color/BackgroundColor">
 
     <!-- ListRow Left sied Thumbnail image -->
 
@@ -32,10 +33,11 @@
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
         android:text="@string/menu_name"  
-        android:textColor="#040404"
+        
         android:textSize="15sp"
         android:textStyle="bold"
-        android:typeface="sans" />
+        android:typeface="sans"
+        android:textColor="@color/mainTitleColor"/>
 
     <!-- Description -->
 
@@ -48,9 +50,10 @@
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
         android:text="@string/description"
-        android:textColor="#343434"
+        
         android:textSize="13sp"
-        tools:ignore="SmallSp" />
+        tools:ignore="SmallSp" 
+        android:textColor="@color/TitleColor" />
 
     <!-- Price -->
 

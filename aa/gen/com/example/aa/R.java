@@ -14,6 +14,11 @@ public final class R {
     }
     public static final class attr {
     }
+    public static final class color {
+        public static final int BackgroundColor=0x7f080001;
+        public static final int TitleColor=0x7f080000;
+        public static final int mainTitleColor=0x7f080002;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -37,39 +42,40 @@ public final class R {
         public static final int ic_logo=0x7f020009;
         public static final int ic_preferiti=0x7f02000a;
         public static final int ic_search=0x7f02000b;
+        public static final int loading=0x7f02000c;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f09000c;
-        public static final int action_compose=0x7f09001e;
-        public static final int action_search=0x7f09001d;
-        public static final int action_settings=0x7f09001c;
-        public static final int button1=0x7f090008;
-        public static final int button2=0x7f090009;
-        public static final int button3=0x7f09000f;
-        public static final int button4=0x7f090010;
-        public static final int check=0x7f09000d;
-        public static final int costo=0x7f090006;
-        public static final int data=0x7f090019;
-        public static final int datePicker1=0x7f09001b;
-        public static final int descr1=0x7f090005;
-        public static final int description=0x7f090018;
-        public static final int drawer_layout=0x7f090000;
-        public static final int fragment1=0x7f09000a;
-        public static final int fragment2=0x7f09000e;
-        public static final int frame_container=0x7f090001;
-        public static final int icon=0x7f090013;
-        public static final int imageView1=0x7f090003;
-        public static final int indirizzo=0x7f090007;
-        public static final int list=0x7f09000b;
-        public static final int list3=0x7f090011;
-        public static final int list_image=0x7f090016;
-        public static final int menu_name=0x7f090017;
-        public static final int scrollView1=0x7f09001a;
-        public static final int section_label=0x7f090012;
-        public static final int slider_list=0x7f090002;
-        public static final int thumbnail=0x7f090015;
-        public static final int title=0x7f090014;
-        public static final int titolo1=0x7f090004;
+        public static final int LinearLayout1=0x7f0a000c;
+        public static final int action_compose=0x7f0a001e;
+        public static final int action_search=0x7f0a001d;
+        public static final int action_settings=0x7f0a001c;
+        public static final int button1=0x7f0a0008;
+        public static final int button2=0x7f0a0009;
+        public static final int button3=0x7f0a000f;
+        public static final int button4=0x7f0a0010;
+        public static final int check=0x7f0a000d;
+        public static final int costo=0x7f0a0006;
+        public static final int data=0x7f0a0019;
+        public static final int datePicker1=0x7f0a001b;
+        public static final int descr1=0x7f0a0005;
+        public static final int description=0x7f0a0018;
+        public static final int drawer_layout=0x7f0a0000;
+        public static final int fragment1=0x7f0a000a;
+        public static final int fragment2=0x7f0a000e;
+        public static final int frame_container=0x7f0a0001;
+        public static final int icon=0x7f0a0013;
+        public static final int imageView1=0x7f0a0003;
+        public static final int indirizzo=0x7f0a0007;
+        public static final int list=0x7f0a000b;
+        public static final int list3=0x7f0a0011;
+        public static final int list_image=0x7f0a0016;
+        public static final int menu_name=0x7f0a0017;
+        public static final int scrollView1=0x7f0a001a;
+        public static final int section_label=0x7f0a0012;
+        public static final int slider_list=0x7f0a0002;
+        public static final int thumbnail=0x7f0a0015;
+        public static final int title=0x7f0a0014;
+        public static final int titolo1=0x7f0a0004;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -90,8 +96,8 @@ public final class R {
         public static final int tb_fragment=0x7f03000f;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
-        public static final int menu1=0x7f080001;
+        public static final int main=0x7f090000;
+        public static final int menu1=0x7f090001;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;

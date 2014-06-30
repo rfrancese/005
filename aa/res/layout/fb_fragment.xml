@@ -6,7 +6,8 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity" 
+     android:background="@color/BackgroundColor">
    
     <LinearLayout 
         android:id="@+id/fragment1"
