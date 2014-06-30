@@ -185,59 +185,9 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 				
 
 						try{
-						      	TagNode liElements[] = rootNode.getElementsByName("li", true);
 						      	
-//						      	for(int i = 0 ; liElements!=null && i < liElements.length ; i++){
-//						      		
-//					      			
-//						      		TagNode divElem[] = liElements[i].getElementsByName("div", true);
-//						      		
-//						      		if(divElem[0].getText().toString().equals("Date /")) {
-//						      			event.setDataText(liElements[i].getText().toString()+"CIAO");
-//						      			
-//						      			
-//						      		}
-//						      		if(divElem[0].getText().equals("Venue /")) {
-//						      			event.setAddress(liElements[i].getText().toString()+"CIAO");
-//						      			
-//						      		}
-//						      		if(divElem[0].getText().equals("Cost /")) {
-//						      			event.setCosto(liElements[i].getText().toString());
-//						      			Toast r = Toast.makeText(cont, "Entrato nel costo", Toast.LENGTH_SHORT);
-//						      			r.show();
-//						      		}
-//						      		if(divElem[0].getText().equals("Promoters /")) {
-//						      			event.setCosto(liElements[i].getText().toString());
-//						      		}
-//						      	}
 						
-						     TagNode pElements[] = rootNode.getElementsByName("p",true);
-						      String allDescription="";
-						      
-						      for(int x = 0 ; x< pElements.length;x++){
-						    	 
-						    	  if(!(pElements[x].hasAttribute("class"))) {
-						    		  
-						    		  String description = pElements[x].getText().toString();
-					    		  
-						    		  if(description.length() > 0) {
-						    			  event.setBigDescription(description);
-						    		  }
-						    	  }
-						      }
-						/*      TagNode ele[]=rootNode.getElementsByName("div",true);
-						         String nome="";
-						         for(int x = 0 ; x< ele.length;x++){
-							    	 
-							    	  if(!(ele[x].hasAttribute("class"))) {
-							    		  
-							    		  String nome1 = ele[x].getText().toString();
-						    		  
-							    		  if(nome1.length() > 0) {
-							    			  event.setNome(nome1);
-							    		  }
-							    	  }
-						         } */
+						      	// Si prende il titolo e funziona 
 						         Object[] name_event=rootNode.evaluateXPath("/body/header/div[@id='navContainer']/div[@id='sectionHead']/h1");
 						         for(int x = 0 ; x< name_event.length;x++){
 						         if (name_event.length > 0) {
@@ -246,12 +196,16 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
 						             String info = info_node.getText().toString();
 						             event.setNome(info);
+						         	}
+						         
 						         }
-						         }
-						         Object[] costo_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@class='clearfix']/ul[@class='clearfix']/li");
+						         
+						         
+						         Object[] costo_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@class='clearfix']/ul[@class='clearfix']/li/");
 						         for(int x = 0 ; x< costo_event.length;x++){
 						         if (costo_event.length > 0) {
 						             // CASTED TO A TAGNODE
+						        	
 						             TagNode info_node = (TagNode) costo_event[x];
 						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
 						           

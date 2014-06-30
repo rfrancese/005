@@ -49,28 +49,10 @@ public class FragmentB extends ListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-//		EventsParser parser=new EventsParser(menuItems,elementName,this.getActivity());
-//		parser.execute();
-//		
+
 		View rootView = inflater.inflate(R.layout.fragment,container, false);
 		listView = (ListView) rootView.findViewById(android.R.id.list);
-//		
-//		
-////		if( menuItems.size() == 0 ) {
-////			//Do nothings 
-////			Toast t = Toast.makeText(getActivity(), "ATTENDI", Toast.LENGTH_LONG);
-////			t.show();
-////		}
-//		
-////		for(int i = 0 ; i < menuItems.size() ; i++) {
-////			EventsDescriptionParser p = new EventsDescriptionParser(menuItems.get(i));
-////			p.execute();
-////			// QUESTO CICLO FOR EFFETTUA IL PARSER DELLA PAGINA DI OGNI EVENTO E SALVA TUTTO NELL OGGETTO PASSATOGLI(EVENTO)
-////			// IL PROBLEMA � CHE � COME SE NON VENISSE EFFETTUATO. BISOGNA CAPIRE IL PERCH�.
-////			//DAto che questo non viene eseguito, tutte le stringhe che si prende il parser , risultano vuote nella visualizzazione.
-////		}
 
-//		
 
 
 		return rootView;
@@ -129,24 +111,7 @@ public class FragmentB extends ListFragment {
 			listView.setAdapter(mAdapter);
 		}
 		
-	/*	if(menuItems.size() != 0) {
-
-			for(int i = 0 ; i < menuItems.size() ; i++) {
-				
-			EventsDescriptionParser p = new EventsDescriptionParser(menuItems.get(i),getActivity());
-			p.execute();
-			
-			
-			}
-		} */
-		
-//		EventsParser parser=new EventsParser(menuItems,elementName,this.getActivity());
-//		parser.execute();
-//		
-//		mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
-//		mAdapter.notifyDataSetChanged();
-//		listView.setAdapter(mAdapter);
-		
+	
 		
 
 	}

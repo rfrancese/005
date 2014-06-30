@@ -103,7 +103,8 @@ public class EventsParser extends AsyncTask<Void, Void, String> {
 						
 						for(int liNumber = 1; liNumber < li.length ; liNumber ++) 
 						{
-							if(li[liNumber].getElementsByName("p", true).length == 0 ) {
+							if(li[liNumber].getElementsByAttValue("class","event-item clearfix", true, true).length  != 0)
+							{
 								
 								nuovo = new Evento();
 								
