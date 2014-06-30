@@ -192,32 +192,37 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						         for(int x = 0 ; x< name_event.length;x++){
 						         if (name_event.length > 0) {
 						             // CASTED TO A TAGNODE
+						        	 
 						             TagNode info_node = (TagNode) name_event[x];
 						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
 						             String info = info_node.getText().toString();
 						             event.setNome(info);
+						            
 						         	}
 						         
 						         }
 						         
 						         
-						         Object[] costo_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@class='clearfix']/ul[@class='clearfix']/li/");
-						         for(int x = 0 ; x< costo_event.length;x++){
+						         Object[] costo_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@id='detail']/ul[@class='clearfix']/li[3]");
+						        
 						         if (costo_event.length > 0) {
 						             // CASTED TO A TAGNODE
 						        	
-						             TagNode info_node = (TagNode) costo_event[x];
+						             TagNode info_node = (TagNode) costo_event[0];
 						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
 						           
 						           String info=info_node.getText().toString();
 						          if( info.startsWith("Cost /", 0)){
-						        	  info.replace("Cost /", "");
-						           event.setCosto(info);
+						        	  info = info.replaceAll("Cost /", "");
+						        	  info = info.replaceAll("Û", "");
+						           event.setCosto(info+" Û");
+						           
 						          }
 						            
 						         }
-						         }
-						         Object[] address_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@class='clearfix']/ul[@class='clearfix']/li[@class='wide']");
+						         
+						         
+						         Object[] address_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='nobreak']/section[@class='contentDetail clearfix']/div[@class='clearfix']/div[@class='col4-6 small']/aside[@id='detail']/ul[@class='clearfix']/li[2]");
 						         for(int x = 0 ; x< address_event.length;x++){
 						         if (address_event.length > 0) {
 						             // CASTED TO A TAGNODE
@@ -225,19 +230,15 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						             // HOW TO RETRIEVE THE CONTENTS AS A STRING
 						           
 						           String info=info_node.getText().toString();
-						           if( info.startsWith("Venue /", 0)){
-						        	   
-						        	   String newS = info.substring(7);
-						        	   event.setAddress(newS);
-						        	   
-						        	   int index = newS.indexOf("Via");
-						        	String  ini = newS.substring(index);
-						        	   ini.trim();
-						        	   event.setIndi(ini);
+						           
+						           String ini = info.replaceFirst("Venue /", "");
+						           ini = ini.replaceAll("&nbsp;","  ");
+						           
+						        	   event.setAddress(ini);
 						           }
 						            
 						         }
-						         }
+						         
 						         Object[] foto_event=rootNode.evaluateXPath("/body/main/ul[@class='content-list']/li[@class='alt']/div[@class='content clearfix']/div[@id='event-item']/div[@class='flyer']/a/img");
 						         for(int x = 0 ; x< foto_event.length;x++){
 						         if (foto_event.length > 0) {
@@ -252,8 +253,26 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						           task.execute(info);
 
 						            
+						         } 
 						         }
+						         if(foto_event.length == 0 ) {
+						        	 Bundle bundle = getArguments();
+						        	 String src =bundle.getString("srcImgSmall");
+						        	 
+							         event.setSrcImgBig(src);
+							           GetXMLTask2 task = new GetXMLTask2();
+							           task.execute(src);
 						         }
+						         
+						         Object[] description = rootNode.evaluateXPath("//*[@id='event-item']/div[3]/p[2]");
+						         
+						         TagNode node = (TagNode) description[0];
+						         String info = node.getText().toString();
+						         if(info.length() < 10) {
+						        	 info=" Nessuna Descrizione dell'evento. ";
+						         }
+						         event.setBigDescription(info);
+						       
 
 						      titolo.setText("DESCRIZIONE: "+event.getBigDescription()+"\n");
 								cost.setText(event.getCosto()+"\n");

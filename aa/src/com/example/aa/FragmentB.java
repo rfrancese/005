@@ -124,8 +124,10 @@ public class FragmentB extends ListFragment {
 	}
 	public void onListItemClick(ListView l, View v, int position, long id) {
        String col= menuItems.get(position).getHref();
+       String col1= menuItems.get(position).getSrcImgSmall();
        final Bundle bundle = new Bundle();
        bundle.putString("href", col);
+       bundle.putString("srcImgSmall", col1);
        Log.i("BUNDLE", bundle.toString());
        
 		Fragment fragment2 = new EventoView();
