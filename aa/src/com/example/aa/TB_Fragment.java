@@ -1,5 +1,8 @@
 package com.example.aa;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -14,9 +17,15 @@ public class TB_Fragment extends ListFragment {
 
 	  public void onActivityCreated(Bundle savedInstanceState) {
 		    super.onActivityCreated(savedInstanceState);
-		    String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-		        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-		        "Linux", "OS/2" };
+		    ArrayList<String> values = new ArrayList<String>();
+		    
+		    
+		    File files[] = getActivity().getExternalFilesDir("ClubAdvisorPartecipa").listFiles();
+		    for(int x = 0 ; x < files.length ; x++) {
+		    	
+		    	values.add(files[x].getName().replaceAll(".TXT", ""));
+		    	
+		    }
 		    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, values);
 		    setListAdapter(adapter);
 		  }

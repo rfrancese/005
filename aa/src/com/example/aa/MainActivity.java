@@ -31,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 	Bundle savedInstanceState=null;
@@ -224,7 +225,8 @@ public class MainActivity extends FragmentActivity {
 		          // Pass any configuration change to the drawer toggles
 		           mDrawerToggle.onConfigurationChanged(newConfig);
 		    }
-		      
+		     
+		    
 		    
 }
 

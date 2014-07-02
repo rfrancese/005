@@ -7,11 +7,11 @@
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="455dp"
+    android:background="@color/BackgroundColor"
     android:columnCount="1"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
-    android:paddingTop="15dp" 
-    android:background="@color/BackgroundColor">
+    android:paddingTop="15dp" >
 
       <TextView
           android:id="@+id/titolo1"
@@ -70,19 +70,40 @@
           android:layout_alignParentLeft="true"
           android:layout_below="@+id/descr1"
           android:layout_marginTop="42dp"
-          android:text="Avvia Navigazione" 
-          android:textColor="@color/TitleColor"/>
+          android:text="Avvia Navigazione"
+          android:textColor="@color/TitleColor"
+          android:textSize="7dp" />
 
       <Button
           android:id="@+id/button2"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignBaseline="@+id/button1"
           android:layout_alignBottom="@+id/button1"
           android:layout_alignParentRight="true"
+          android:text="Condividi"
+          android:textColor="@color/TitleColor"
+          android:textSize="10dp" />
+
+      <Button
+          android:id="@+id/saveBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/button1"
           android:layout_toRightOf="@+id/button1"
-          android:text="Condividi" 
-          android:textColor="@color/TitleColor"/>
+          android:text="Salva"
+          android:textColor="@color/TitleColor"
+          android:textSize="10dp" />
+
+      <Button
+          android:id="@+id/partecipaBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBaseline="@+id/button2"
+          android:layout_alignBottom="@+id/button2"
+          android:layout_toLeftOf="@+id/button2"
+          android:text="Partecipa"
+          android:textColor="@color/TitleColor"
+          android:textSize="10dp" />
 
 </RelativeLayout>
 </ScrollView>

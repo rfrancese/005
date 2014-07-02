@@ -1,8 +1,6 @@
 package com.example.aa;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,18 +17,23 @@ import com.example.aa.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -70,6 +73,8 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
     	  ind=(TextView)  v.findViewById(R.id.indirizzo);
     	  b1=(Button) v.findViewById(R.id.button1);
     	  b2=(Button) v.findViewById(R.id.button2);
+    	  Button saveBtn = (Button) v.findViewById(R.id.saveBtn);
+    	  Button partecipaBtn = (Button) v.findViewById(R.id.partecipaBtn);
     	  
     	  event=new Evento();
     	  Bundle bundle = getArguments();
@@ -80,7 +85,7 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 			b1.setOnClickListener(new View.OnClickListener() {
 				  public void onClick(View view) { 
 					  Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-							    Uri.parse("http://maps.google.com/maps?daddr="+event.getIndi()));
+							    Uri.parse("http://maps.google.com/maps?daddr="+event.getAddress()));
 							startActivity(intent);
 				  }
 				});
@@ -104,9 +109,99 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 		              startActivity(intent);
  		          }
 
-		        });   
+		        });
+			
+			saveBtn.setOnClickListener(new OnClickListener(){
+				
+
+				@Override
+				public void onClick(View v) {
+					
+					//CREAZIONE DEL FILE QUI : 
+					String fileName = event.getNome()+".TXT";
+					String filePath = "ClubAdvisorPreferiti";
+					
+					File myExternalFile;
+					myExternalFile = new File(getActivity().getExternalFilesDir(filePath), fileName);
+					
+					try {
+						FileOutputStream fos = new FileOutputStream(myExternalFile);
+						fos.write(event.getNome().getBytes());
+						fos.write("\n".getBytes());
+						
+						fos.write(event.getAddress().getBytes());
+						fos.write("\n".getBytes());
+						fos.write(event.getBigDescription().getBytes());
+						fos.write("\n".getBytes());
+						fos.close();
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+					
+					Toast x = Toast.makeText(getActivity(), "Evento Salvato Nei Preferiti", Toast.LENGTH_SHORT);
+					x.show();
+				}
+				
+			});
+			
+			partecipaBtn.setOnClickListener(new OnClickListener(){
+				
+
+				@Override
+				public void onClick(View v) {
+					
+					//CREAZIONE DEL FILE QUI : 
+					String fileName = event.getNome()+".TXT";
+					String filePath = "ClubAdvisorPartecipa";
+					
+					File myExternalFile;
+					myExternalFile = new File(getActivity().getExternalFilesDir(filePath), fileName);
+					
+					try {
+						FileOutputStream fos = new FileOutputStream(myExternalFile);
+						fos.write(event.getNome().getBytes());
+						fos.write("\n".getBytes());
+						
+						fos.write(event.getAddress().getBytes());
+						fos.write("\n".getBytes());
+						fos.write(event.getBigDescription().getBytes());
+						fos.write("\n".getBytes());
+						fos.close();
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+					
+					Toast x = Toast.makeText(getActivity(), "Vuoi Partecipare a questo Evento", Toast.LENGTH_SHORT);
+					x.show();
+				}
+				
+			});
     	  return v;
       }
+	  
+	  
+	  
+	  public boolean isExternalStorageWritable() {
+		    String state = Environment.getExternalStorageState();
+		    if (Environment.MEDIA_MOUNTED.equals(state)) {
+		        return true;
+		    }
+		    return false;
+		}
+	  
+	  
 	  
 	  public void onStart(){
 		  super.onStart();
@@ -147,6 +242,8 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 		        this.pDialog.setMessage("Progress start");
 		        this.pDialog.show();
 				}
+		    
+		    
 		    
 		  
 			@Override
@@ -296,6 +393,9 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 			    }
 
 	  }
+	  
+	 
+	      
 	  private class GetXMLTask2 extends AsyncTask<String, Void, Bitmap[]> {
 
 	        @Override
