@@ -9,7 +9,8 @@ package com.example.aa;
 
 public final class R {
     public static final class array {
-        public static final int icons=0x7f060001;
+        public static final int icons=0x7f060002;
+        public static final int spinnerplaces=0x7f060001;
         public static final int titles=0x7f060000;
     }
     public static final class attr {
@@ -42,13 +43,12 @@ public final class R {
         public static final int ic_logo=0x7f020009;
         public static final int ic_preferiti=0x7f02000a;
         public static final int ic_search=0x7f02000b;
-        public static final int loading=0x7f02000c;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0a000e;
-        public static final int action_compose=0x7f0a0020;
-        public static final int action_search=0x7f0a001f;
-        public static final int action_settings=0x7f0a001e;
+        public static final int action_compose=0x7f0a0026;
+        public static final int action_search=0x7f0a0025;
+        public static final int action_settings=0x7f0a0024;
         public static final int button1=0x7f0a0008;
         public static final int button2=0x7f0a0009;
         public static final int button3=0x7f0a0011;
@@ -56,7 +56,7 @@ public final class R {
         public static final int check=0x7f0a000f;
         public static final int costo=0x7f0a0006;
         public static final int data=0x7f0a001b;
-        public static final int datePicker1=0x7f0a001d;
+        public static final int datePicker1=0x7f0a0023;
         public static final int descr1=0x7f0a0005;
         public static final int description=0x7f0a001a;
         public static final int drawer_layout=0x7f0a0000;
@@ -71,10 +71,16 @@ public final class R {
         public static final int list_image=0x7f0a0018;
         public static final int menu_name=0x7f0a0019;
         public static final int partecipaBtn=0x7f0a000b;
+        public static final int radioButton1=0x7f0a0020;
+        public static final int radioButton2=0x7f0a0021;
+        public static final int radioButton3=0x7f0a0022;
+        public static final int radioGroup=0x7f0a001f;
         public static final int saveBtn=0x7f0a000a;
-        public static final int scrollView1=0x7f0a001c;
         public static final int section_label=0x7f0a0014;
         public static final int slider_list=0x7f0a0002;
+        public static final int spinner1=0x7f0a001d;
+        public static final int textView1=0x7f0a001c;
+        public static final int textView2=0x7f0a001e;
         public static final int thumbnail=0x7f0a0017;
         public static final int title=0x7f0a0016;
         public static final int titolo1=0x7f0a0004;

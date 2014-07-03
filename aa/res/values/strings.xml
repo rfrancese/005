@@ -17,6 +17,11 @@
         <item>Calendario</item>
         <item>Contatta</item>
     </string-array>
+    <string-array name="spinnerplaces">
+        <item>Nord Italia</item>
+        <item>Centro Italia</item>
+        <item>Sud Italia</item>
+    </string-array>
 
     <array name="icons">
         <item>@drawable/ic_launcher</item>
