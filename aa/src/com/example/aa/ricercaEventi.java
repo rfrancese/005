@@ -15,6 +15,7 @@ import com.example.aa.R;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -33,6 +34,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+@SuppressLint("ValidFragment")
 public class ricercaEventi extends ListFragment {
 	
 	 
@@ -40,15 +42,16 @@ public class ricercaEventi extends ListFragment {
 	private int tempo;
 	private int luogo;
 	String elementName = "a";
-	private Dialog pDialog;
+	
+	
+	
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	private ListView listView;
-	public static ArrayList<Evento> menuItems=new ArrayList<Evento>();
+	public  ArrayList<Evento> menuItems = new ArrayList<Evento>();
 	private CustomArrayAdapter mAdapter;
 	private OtherEventsParser parser;
-
-
-
+	private ProgressDialog pDialog;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -63,8 +66,27 @@ public class ricercaEventi extends ListFragment {
 		 int giorno=bundle1.getInt("giorno");
 		listView = (ListView) rootView.findViewById(android.R.id.list);
 
-
-
+		parser=new OtherEventsParser(menuItems,elementName,this.getActivity(),tempo,luogo);
+		parser.execute();
+		pDialog = new ProgressDialog(this.getActivity());
+		pDialog.show();
+		pDialog.setMessage("Ricerca Eventi");
+		
+		 Handler handler = new Handler(); 
+		    handler.postDelayed(new Runnable() { 
+		         public void run() { 
+		             
+		             
+		             mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
+		 			mAdapter.notifyDataSetChanged();
+		 			listView.setAdapter(mAdapter);
+		 			pDialog.dismiss();
+		         } 
+		    }, 3000);
+		
+		
+        
+		
 		return rootView;
 	}
 
@@ -74,7 +96,7 @@ public class ricercaEventi extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-
+		
 
 
 
@@ -92,7 +114,9 @@ public class ricercaEventi extends ListFragment {
 
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
 
+		
 	}
 	public void onPause(){
 		super.onPause();
@@ -111,30 +135,25 @@ public class ricercaEventi extends ListFragment {
 	}
 	public void onStart(){
 		super.onStart();
-		if(menuItems.size() == 0) {
-			
-			 parser=new OtherEventsParser(menuItems,elementName,this.getActivity(),tempo,luogo);
-			parser.execute();
-			
-			
-			
+		
+		
+		
 	
 			
-		}else {
-			
-			
-			mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
-			mAdapter.notifyDataSetChanged();
-			listView.setAdapter(mAdapter);
-		}
 		
+			
+			
+			
+			
+		}
 	
 		
 
-	}
+	
 	public void onResume(){
 		super.onResume();
-
+		
+		
 	}
 	public void onDetach(){
 		super.onDetach();

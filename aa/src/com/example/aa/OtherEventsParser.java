@@ -65,8 +65,10 @@ public class OtherEventsParser extends AsyncTask<Void, Void, String> {
 	}
 		protected void onPreExecute() {
 	        super.onPreExecute();
-	        this.pDialog.setMessage("Progress start");
-	        this.pDialog.show();
+//	        this.pDialog.setMessage("Progress start");
+//	        this.pDialog.show();
+	        
+	       
 			}
 
 		@Override

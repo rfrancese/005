@@ -85,7 +85,7 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 			b1.setOnClickListener(new View.OnClickListener() {
 				  public void onClick(View view) { 
 					  Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-							    Uri.parse("http://maps.google.com/maps?daddr="+event.getAddress()));
+							    Uri.parse("http://maps.google.com/maps?daddr="+event.getIndi()));
 							startActivity(intent);
 				  }
 				});
@@ -330,8 +330,21 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						           
 						           String ini = info.replaceFirst("Venue /", "");
 						           ini = ini.replaceAll("&nbsp;","  ");
+						           if( ini.indexOf("via") == -1) {
+						        	   
+						        	   if(ini.indexOf("Via") == -1 ) {
+						        		   event.setIndi(ini);
+						        	   } else {
+						        		  int index =  ini.indexOf("Via");
+						        		  event.setIndi(ini.substring(index));
+						        	   }
+						           } else {
+						        	   int index =  ini.indexOf("via");
+						        		  event.setIndi(ini.substring(index));
+						           }
 						           
 						        	   event.setAddress(ini);
+						        	   
 						           }
 						            
 						         }

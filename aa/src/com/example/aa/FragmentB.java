@@ -22,6 +22,7 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -38,7 +39,7 @@ public class FragmentB extends ListFragment {
 
 	String url_str = "http://www.residentadvisor.net/events.aspx?ai=172";
 	String elementName = "a";
-	private Dialog pDialog;
+	private ProgressDialog pDialog;
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	private ListView listView;
 	public static ArrayList<Evento> menuItems=new ArrayList<Evento>();
@@ -54,7 +55,28 @@ public class FragmentB extends ListFragment {
 		listView = (ListView) rootView.findViewById(android.R.id.list);
 
 
-
+		pDialog = new ProgressDialog(this.getActivity());
+		
+		EventsParser parser=new EventsParser(menuItems,elementName,this.getActivity());
+		parser.execute();
+		pDialog.show();
+		pDialog.setMessage("Caricamento Eventi");
+		
+		
+		Handler handler = new Handler(); 
+		handler.postDelayed(new Runnable() { 
+	         public void run() { 
+//	             Toast t = Toast.makeText(getActivity(), "Sono passati 10 secondi dall'esecuzione "+menuItems.size(), Toast.LENGTH_SHORT);
+//	             t.show();
+	             
+	             mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
+	 			mAdapter.notifyDataSetChanged();
+	 			listView.setAdapter(mAdapter);
+	 			pDialog.dismiss();
+	         } 
+	    }, 3000);
+		
+		
 		return rootView;
 	}
 
@@ -97,19 +119,14 @@ public class FragmentB extends ListFragment {
 	}
 	public void onStart(){
 		super.onStart();
-		if(menuItems.size() == 0) {
-			EventsParser parser=new EventsParser(menuItems,elementName,this.getActivity());
-			parser.execute();
+		
 			
 			
+
 			
 	
 			
-		}else {
-			mAdapter = new CustomArrayAdapter(getActivity(),android.R.id.list, menuItems);
-			mAdapter.notifyDataSetChanged();
-			listView.setAdapter(mAdapter);
-		}
+		
 		
 	
 		

@@ -1,5 +1,7 @@
 package com.example.aa;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -96,7 +98,6 @@ private Button butt;
 			       bundle1.putInt("mese", month);
 			       bundle1.putInt("giorno",day);
 			       Log.i("BUNDLE", bundle1.toString());
-			       
 			       ListFragment fragment2 = new ricercaEventi();
 					fragment2.setArguments(bundle1); 
 					android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
