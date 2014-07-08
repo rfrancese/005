@@ -35,16 +35,6 @@
           android:textColor="@color/TitleColor" />
 
       <TextView
-          android:id="@+id/costo"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:layout_alignParentLeft="true"
-          android:layout_below="@+id/imageView1"
-          android:layout_marginTop="40dp"
-          android:text="Costo" 
-          android:textColor="@color/TitleColor"/>
-
-      <TextView
           android:id="@+id/indirizzo"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"
@@ -104,6 +94,16 @@
           android:text="Partecipa"
           android:textColor="@color/TitleColor"
           android:textSize="10dp" />
+
+      <TextView
+          android:id="@+id/costo"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:layout_alignLeft="@+id/indirizzo"
+          android:layout_below="@+id/indirizzo"
+          android:layout_marginTop="24dp"
+          android:text="Costo"
+          android:textColor="@color/TitleColor" />
 
 </RelativeLayout>
 </ScrollView>

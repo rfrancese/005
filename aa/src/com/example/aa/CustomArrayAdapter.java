@@ -75,7 +75,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Evento> {
 		        // Execute the task
 		       // task.execute(new String[] { rowItem.getSrcImgSmall() });
 			         holder.txtDate = (TextView) convertView.findViewById(R.id.data);
-			         holder.txtDate.setText(rowItem.getDataString());
+			         holder.txtDate.setText(rowItem.getDataString().substring(0, 10));
 			holder.txtMenuDesc = (TextView) convertView.findViewById(R.id.description);
 			holder.txtMenuDesc.setText(rowItem.getSmallDescription());
 			holder.imageView.setImageBitmap(rowItem.getImgBtmSmall());

@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
@@ -33,19 +35,25 @@ public class OtherEventsParser extends AsyncTask<Void, Void, String> {
 		private Context thisContext;
 		private int tempo1;
 		private int luogo1;
+		private int anno;
+		private int mese;
+		private int giorno;
 	
 	      
 		
 				
 	
 
-		public OtherEventsParser(ArrayList<Evento> menuItems , String elementName,Context context,int tempo,int luogo){
+		public OtherEventsParser(ArrayList<Evento> menuItems , String elementName,Context context,int tempo,int luogo,int anno1,int mese1,int giorno1){
 			this.menuItems = menuItems;
 			this.elementName = elementName;
 			thisContext = context;
 			pDialog = new ProgressDialog(context);
 			tempo1=tempo;
 			luogo1=luogo;
+			anno=anno1;
+			mese=mese1;
+			giorno=giorno1;
 			
 			URL = AGGIORNAURL();
 			
@@ -61,6 +69,34 @@ public class OtherEventsParser extends AsyncTask<Void, Void, String> {
         	if(luogo1==2)
         		sito="http://www.residentadvisor.net/events.aspx?ai=172";
         }
+        else 
+        	if(tempo1==1)
+        	{
+        		Calendar gc = Calendar.getInstance();
+        		   int giornooggi=gc.get(Calendar.DAY_OF_MONTH);
+        		   int meseoggi=gc.get(Calendar.MONTH);
+        		   int annooggi=gc.get(Calendar.YEAR);
+        		   System.out.print(giornooggi+"/"+meseoggi+"/"+annooggi);
+        		if(luogo1==0)
+            		sito="http://www.residentadvisor.net/events.aspx?ai=171&v=month&mn="+meseoggi+"&yr="+annooggi+"&dy="+giornooggi;
+            	if(luogo1==1)
+            		sito="http://www.residentadvisor.net/events.aspx?ai=52&v=month&mn="+meseoggi+"&yr="+annooggi+"&dy="+giornooggi;
+            	if(luogo1==2)
+            		sito="http://www.residentadvisor.net/events.aspx?ai=172&v=month&mn="+meseoggi+"&yr="+annooggi+"&dy="+giornooggi;
+            	Log.i("SITO:", sito.toString());
+        	}
+        	else
+        		if(tempo1==2)
+        		{
+        			if(luogo1==0)
+                		sito="http://www.residentadvisor.net/events.aspx?ai=171&v=day&mn="+mese+"&yr="+anno+"&dy="+giorno;
+                	if(luogo1==1)
+                		sito="http://www.residentadvisor.net/events.aspx?ai=52&v=day&mn="+mese+"&yr="+anno+"&dy="+giorno;
+                	if(luogo1==2)
+                		sito="http://www.residentadvisor.net/events.aspx?ai=172&v=day&mn="+mese+"&yr="+anno+"&dy="+giorno;
+                	Log.i("SITO:", sito.toString());
+
+        		}
 		return sito;
 	}
 		protected void onPreExecute() {
@@ -149,7 +185,9 @@ public class OtherEventsParser extends AsyncTask<Void, Void, String> {
 								
 								
 							}
-							
+							if(menuItems.isEmpty())
+								Toast.makeText(thisContext, "NON SONO PRESENTI EVENTI!" , 
+										   Toast.LENGTH_LONG).show();
 						}
 						
 					}

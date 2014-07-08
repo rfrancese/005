@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/radioGroup"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="120dp"
             android:layout_toRightOf="@+id/textView2"
             android:text="RICERCA" />
 

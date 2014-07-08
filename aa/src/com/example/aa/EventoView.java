@@ -312,7 +312,7 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						          if( info.startsWith("Cost /", 0)){
 						        	  info = info.replaceAll("Cost /", "");
 						        	  info = info.replaceAll("Û", "");
-						           event.setCosto(info+" Û");
+						           event.setCosto(info+" €");
 						           
 						          }
 						            
@@ -385,8 +385,8 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						       
 
 						      titolo.setText("DESCRIZIONE: "+event.getBigDescription()+"\n");
-								cost.setText(event.getCosto()+"\n");
-								ind.setText(event.getAddress()+"\n");
+								cost.setText("TICKET: "+event.getCosto()+"\n");
+								ind.setText("INDIRIZZO: "+event.getAddress()+"\n");
 						      descr.setText(event.getNome()+"\n");
 
 						      

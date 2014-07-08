@@ -41,6 +41,9 @@ public class ricercaEventi extends ListFragment {
 
 	private int tempo;
 	private int luogo;
+	private int anno1;
+	private int mese1;
+	private int giorno1;
 	String elementName = "a";
 	
 	
@@ -60,13 +63,14 @@ public class ricercaEventi extends ListFragment {
 		Bundle bundle1 = getArguments();
 	       tempo=bundle1.getInt("quando");
 		    luogo =  bundle1.getInt("dove");
+		    
 		
-		 int anno=bundle1.getInt("anno");
-		 int mese=bundle1.getInt("mese");
-		 int giorno=bundle1.getInt("giorno");
+		  anno1=bundle1.getInt("anno");
+		  mese1=bundle1.getInt("mese");
+		  giorno1=bundle1.getInt("giorno");
 		listView = (ListView) rootView.findViewById(android.R.id.list);
 
-		parser=new OtherEventsParser(menuItems,elementName,this.getActivity(),tempo,luogo);
+		parser=new OtherEventsParser(menuItems,elementName,this.getActivity(),tempo,luogo,anno1,mese1,giorno1);
 		parser.execute();
 		pDialog = new ProgressDialog(this.getActivity());
 		pDialog.show();

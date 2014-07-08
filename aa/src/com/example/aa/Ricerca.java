@@ -53,9 +53,7 @@ private Button butt;
 		                      break;
 		                  case R.id.radioButton3:
 		                      ric=2;
-		                    day = datePicker.getDayOfMonth();
-		             		month = datePicker.getMonth() + 1;
-		             		 year = datePicker.getYear();
+		                   
 		                      break;
 		            }   
 		        }
@@ -91,6 +89,9 @@ private Button butt;
 		butt= (Button) rootView.findViewById(R.id.button1);
 		butt.setOnClickListener(new View.OnClickListener() {
 			  public void onClick(View view) { 
+				  day = datePicker.getDayOfMonth();
+           		month = datePicker.getMonth() + 1;
+           		 year = datePicker.getYear();
 				  Bundle bundle1 = new Bundle();
 			       bundle1.putInt("dove", cod);
 			       bundle1.putInt("quando", ric);
