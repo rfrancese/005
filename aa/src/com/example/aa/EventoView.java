@@ -312,7 +312,7 @@ final String NAME_XPATH = "//div[@class='null']/div[@class='clearfix']/h1";
 						          if( info.startsWith("Cost /", 0)){
 						        	  info = info.replaceAll("Cost /", "");
 						        	  info = info.replaceAll("Û", "");
-						           event.setCosto(info+" €");
+						           event.setCosto(info+"\u20ac");
 						           
 						          }
 						            

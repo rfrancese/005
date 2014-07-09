@@ -42,7 +42,7 @@ public class FragmentB extends ListFragment {
 	private ProgressDialog pDialog;
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	private ListView listView;
-	public static ArrayList<Evento> menuItems=new ArrayList<Evento>();
+	public ArrayList<Evento> menuItems=new ArrayList<Evento>();
 	private CustomArrayAdapter mAdapter;
 
 
