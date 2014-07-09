@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="true" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="455dp"
+        android:background="@color/BackgroundColor"
+        android:columnCount="1"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp" >
+
+    <TextView
+        android:id="@+id/sito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/android:list"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="77dp"
+        android:clickable="true"
+        android:gravity="center_horizontal"
+            android:textStyle="bold"
+           android:textColor="#FF0000"
+
+            
+        android:text="VISITA IL NOSTRO SITO CLICCANDO QUI!"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_marginTop="20dp" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gi"
+        android:layout_below="@id/android:list"
+        android:text="DAVIDE SCARANO :"
+            android:textStyle="bold"
+        
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/da"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:text="davidescarano1991@gmail.com"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/da"
+        android:layout_below="@+id/gi"
+        android:layout_marginTop="36dp"
+        android:clickable="true"
+            android:textStyle="bold"
+        
+        android:text="FRANCISCO BARBOSA MARIN:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/fran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:text="franbarbosa90@gmail.com"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/da"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:gravity="center"
+            android:textStyle="bold"
+        
+        android:text="LUIGI DI MARTINO :"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/gi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:gravity="center_horizontal"
+        android:text="dimartinoluigi@live.it"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+    </ScrollView>
